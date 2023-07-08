@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import appLogo from "src/assets/icons/app_logo.svg";
 import iconMemo from "src/assets/icons/icon_memo.svg";
@@ -10,6 +10,12 @@ import iconMenu from "src/assets/icons/icon_menu.svg";
 import { StyledHeader } from "./style";
 
 const Header = () => {
+  const [menuToggleClass, setMenuToggleClass] = useState("");
+
+  const toggleMenu = () => {
+    setMenuToggleClass((prev) => (prev === "open" ? "" : "open"));
+  };
+
   return (
     <StyledHeader>
       <div className="app-logo">
@@ -30,7 +36,12 @@ const Header = () => {
             お知らせ
           </div>
         </div>
-        <img className="btn-menu" src={iconMenu} alt="icon_menu"></img>
+        {/* <img className="btn-menu" src={iconMenu} alt="icon_menu"></img> */}
+        <div onClick={toggleMenu} className={`btn-menu ${menuToggleClass}`}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         {/* <div>
         <img src={iconClose} alt="icon_close"></img>
       </div> */}

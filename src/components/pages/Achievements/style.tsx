@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledAchievements = styled.div`
+export const StyledAchievements = styled.div`
   margin: 0 10rem;
   display: grid;
   grid-template-columns: 100%;
@@ -47,5 +47,3 @@ const StyledAchievements = styled.div`
     margin-bottom: 4rem;
   }
 `;
-
-export default StyledAchievements;

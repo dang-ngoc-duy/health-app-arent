@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StyledAchievements from "./style";
+import { StyledAchievements } from "./style";
 
 const Achievements: React.FC = () => {
   const [itemList, setItemList] = useState([
@@ -62,7 +62,7 @@ const Achievements: React.FC = () => {
         </div>
       </div>
       <div className="load-more">
-        <button>Load More</button>
+        <button onClick={addItemList}>Load More</button>
       </div>
     </StyledAchievements>
   );
