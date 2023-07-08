@@ -2,8 +2,6 @@ import { styled } from "styled-components";
 import PIE_CHART_BG from "src/assets/images/d01.jpg";
 
 export const StyledDashboard = styled.div`
-  height: 100vh;
-
   display: grid;
   grid-template-columns: 40% 60%;
   grid-template-rows: 19.75rem auto;
