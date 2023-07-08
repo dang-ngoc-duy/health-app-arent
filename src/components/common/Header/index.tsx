@@ -4,12 +4,10 @@ import appLogo from "src/assets/icons/app_logo.svg";
 import iconMemo from "src/assets/icons/icon_memo.svg";
 import iconChallenge from "src/assets/icons/icon_challenge.svg";
 import iconInfo from "src/assets/icons/icon_info.svg";
-import iconMenu from "src/assets/icons/icon_menu.svg";
-// import iconClose from "src/assets/icons/icon_close.svg";
 
 import { StyledHeader } from "./style";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [menuToggleClass, setMenuToggleClass] = useState("");
 
   const toggleMenu = () => {
@@ -36,15 +34,21 @@ const Header = () => {
             お知らせ
           </div>
         </div>
-        {/* <img className="btn-menu" src={iconMenu} alt="icon_menu"></img> */}
-        <div onClick={toggleMenu} className={`btn-menu ${menuToggleClass}`}>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className="menu-list">
+          <div onClick={toggleMenu} className={`btn-menu ${menuToggleClass}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul className={`toggle-menu ${menuToggleClass}`}>
+            <li>自分の記録</li>
+            <li>体重グラフ</li>
+            <li>目標</li>
+            <li>選択中のコース</li>
+            <li>コラム一覧</li>
+            <li>設定</li>
+          </ul>
         </div>
-        {/* <div>
-        <img src={iconClose} alt="icon_close"></img>
-      </div> */}
       </div>
     </StyledHeader>
   );

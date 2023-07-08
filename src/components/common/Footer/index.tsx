@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledFooter } from "./style";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <StyledFooter>
       <a href="/#">会員登録</a>

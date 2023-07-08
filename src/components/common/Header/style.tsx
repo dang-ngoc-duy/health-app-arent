@@ -59,6 +59,45 @@ export const StyledHeader = styled.div`
     }
   }
 
+  .menu-list {
+    position: relative;
+    .toggle-menu {
+      display: none;
+      position: absolute;
+      top: 32px;
+      right: 0;
+      list-style: none;
+      padding: 0;
+
+      &.open {
+        display: block;
+      }
+
+      li {
+        width: 17.5rem;
+        height: 4.5rem;
+        background: var(--gray-400);
+        color: #fff;
+        font-family: Hiragino Kaku Gothic Pro;
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 1.625rem;
+        padding: 1.4rem 2rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid rgb(255 255 255 / 50%);
+      }
+      li:last-of-type {
+        border-bottom: none;
+      }
+      li:hover {
+        background: #5e5e5e;
+      }
+    }
+  }
+
   .btn-menu {
     display: flex;
     width: 2rem;
@@ -82,7 +121,7 @@ export const StyledHeader = styled.div`
       width: 26px;
       background: var(--primary-400);
       opacity: 1;
-      left: 0;
+      left: 0.188rem;
       -webkit-transform: rotate(0deg);
       -moz-transform: rotate(0deg);
       -o-transform: rotate(0deg);
@@ -122,7 +161,7 @@ export const StyledHeader = styled.div`
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     top: 0.375rem;
-    left: 0.5rem;
+    left: 0.46rem;
   }
 
   .btn-menu.open span:nth-child(2) {
@@ -136,6 +175,6 @@ export const StyledHeader = styled.div`
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     top: 1.5rem;
-    left: 0.5rem;
+    left: 0.46rem;
   }
 `;
