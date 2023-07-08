@@ -23,6 +23,7 @@ export const StyledHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     img {
       height: 2.5rem;
@@ -45,6 +46,7 @@ export const StyledHeader = styled.div`
     justify-content: flex-start;
     justify-seft: end;
     gap: 0.5rem;
+    cursor: pointer;
 
     color: #fff;
     font-family: Hiragino Kaku Gothic Pro;
@@ -53,9 +55,15 @@ export const StyledHeader = styled.div`
     font-weight: 300;
     line-height: 1.4375rem;
 
+    &:hover {
+      background-color: rgba(255, 150, 60, 0.15);
+    }
+
     img {
       width: 2rem;
       height: 2rem;
+      &:hover {
+      }
     }
   }
 
