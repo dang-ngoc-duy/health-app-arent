@@ -76,7 +76,7 @@ export const StyledHeader = styled.div`
       right: 0;
       list-style: none;
       padding: 0;
-      z-index: 1;
+      z-index: 99;
 
       &.open {
         display: block;

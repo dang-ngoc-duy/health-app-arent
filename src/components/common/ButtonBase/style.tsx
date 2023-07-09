@@ -8,7 +8,6 @@ export const StyledButtonHexagon = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-
   color: #fff;
   text-align: center;
   font-family: Inter;
@@ -16,6 +15,8 @@ export const StyledButtonHexagon = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: 1.5rem;
+  flex-shrink: 0;
+  flex-grow: 0;
 
   & img {
     width: 3.5rem;

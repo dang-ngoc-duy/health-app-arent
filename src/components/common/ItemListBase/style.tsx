@@ -28,15 +28,12 @@ export const StyledItemListPhoto = styled.div`
 `;
 
 export const StyledItemListColumn = styled.div`
-  width: 234px;
-
   .image-block {
     position: relative;
-    width: 234px;
-    height: 144.47px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    aspect-ratio: 234 / 144.47;
   }
 
   .describe-block {
@@ -95,13 +92,12 @@ export const StyledItemListColumn = styled.div`
 `;
 
 export const StyledItemListDiary = styled.div`
-  width: 14.4375rem;
-  height: 14.4375rem;
   border: 0.125rem solid #707070;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  aspect-ratio: 1/1;
 
   .date-time-block {
     display: flex;

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import ButtonBase from "src/components/common/ButtonBase";
-import iconKnife from "src/assets/icons/icon_knife.svg";
-import iconCup from "src/assets/icons/icon_cup.svg";
 import m01 from "src/assets/images/m01.jpg";
-import { StyledDashboard } from "./style";
+import iconCup from "src/assets/icons/icon_cup.svg";
+import iconKnife from "src/assets/icons/icon_knife.svg";
+import ButtonBase from "src/components/common/ButtonBase";
+import LineChartBase from "src/components/common/LineChartBase";
 import ItemListBase, { ItemPhoto } from "src/components/common/ItemListBase";
+
+import { StyledDashboard } from "./style";
 
 const Dashboard: React.FC = () => {
   const [itemList, setItemList] = useState<ItemPhoto[]>([
@@ -37,7 +39,9 @@ const Dashboard: React.FC = () => {
   return (
     <StyledDashboard>
       <div className="pie-chart">Pie Chart</div>
-      <div className="line-chart">Line Chart</div>
+      <div className="line-chart">
+        <LineChartBase></LineChartBase>
+      </div>
       <div className="container">
         <div className="filters">
           {filterList.map((filter, idx) => (

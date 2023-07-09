@@ -1,27 +1,50 @@
 import React, { useState } from "react";
+import RecommendedBase from "src/components/common/RecommendedBase";
+import ItemListBase, { ItemColumn } from "src/components/common/ItemListBase";
+import m01 from "src/assets/images/m01.jpg";
 import { StyledRecommended } from "./style";
+import ButtonBase from "src/components/common/ButtonBase";
 
 const Recommended: React.FC = () => {
-  const [itemList, setItemList] = useState([
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
+  const [itemList, setItemList] = useState<ItemColumn[]>([
+    {
+      imageLink: m01,
+      date: "2021.05.17",
+      time: "23:25",
+      describe:
+        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
+      hashTag: ["#魚料理", "#和食", "#DHA"],
+    },
+    {
+      imageLink: m01,
+      date: "2021.05.17",
+      time: "23:25",
+      describe:
+        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
+      hashTag: ["#魚料理", "#和食", "#DHA"],
+    },
+    {
+      imageLink: m01,
+      date: "2021.05.17",
+      time: "23:25",
+      describe:
+        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
+      hashTag: ["#魚料理", "#和食", "#DHA"],
+    },
+    {
+      imageLink: m01,
+      date: "2021.05.17",
+      time: "23:25",
+      describe:
+        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
+      hashTag: ["#魚料理", "#和食", "#DHA"],
+    },
   ]);
   const [recommendedList, setRecommendedList] = useState([
-    { name: "Recommended 1", isActive: false },
-    { name: "Recommended 2", isActive: false },
-    { name: "Recommended 3", isActive: false },
-    { name: "Recommended 4", isActive: false },
+    { title: "Recommended", describe: "オススメ" },
+    { title: "Recommended", describe: "オススメ" },
+    { title: "Recommended", describe: "オススメ" },
+    { title: "Recommended", describe: "オススメ" },
   ]);
 
   const addItemList = () => {
@@ -29,7 +52,14 @@ const Recommended: React.FC = () => {
 
     setItemList((prev) => [
       ...prev,
-      { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
+      {
+        imageLink: m01,
+        date: "2021.05.17",
+        time: "23:25",
+        describe:
+          "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
+        hashTag: ["#魚料理", "#和食", "#DHA"],
+      },
     ]);
 
     listContainer && (listContainer.scrollTop = listContainer.scrollHeight);
@@ -38,28 +68,24 @@ const Recommended: React.FC = () => {
     <StyledRecommended>
       <div className="recommend-filters">
         {recommendedList.map((recommended, idx) => (
-          <div
+          <RecommendedBase
             key={idx}
-            style={{
-              width: "13.5rem",
-              height: "9rem",
-              background: "var(--primary-300-400)",
-            }}
-            className="filter"
-          >
-            {recommended.name}
-          </div>
+            title={recommended.title}
+            describe={recommended.describe}
+          ></RecommendedBase>
         ))}
       </div>
       <div id="item-list" className="item-list">
         {itemList.map((item, idx) => (
-          <div key={idx} style={{ background: "#FFCC21" }}>
-            {item.date}
-          </div>
+          <ItemListBase key={idx} type="column" data={item}></ItemListBase>
         ))}
       </div>
       <div className="load-more">
-        <button onClick={addItemList}>Load More</button>
+        <ButtonBase
+          onClick={addItemList}
+          title="記録をもっと見る"
+          type="normal"
+        ></ButtonBase>
       </div>
     </StyledRecommended>
   );

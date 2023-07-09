@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledAchievements = styled.div`
-  margin: 0 10rem;
+  margin-inline: clamp(0.5rem, 10%, 10rem);
   display: grid;
   grid-template-columns: 100%;
   gap: 3.5rem;
@@ -10,8 +10,8 @@ export const StyledAchievements = styled.div`
   .features {
     margin-top: 3.5rem;
     display: grid;
-    grid-template-columns: 18rem 18rem 18rem;
-    grid-auto-rows: 18rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
     grid-gap: 3rem;
     justify-content: space-between;
     overflow-x: auto;
@@ -33,9 +33,10 @@ export const StyledAchievements = styled.div`
       overflow-y: auto;
 
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(14.625rem, 1fr));
-      grid-auto-rows: 14.625rem;
+      grid-template-columns: repeat(auto-fit, minmax(14.625rem, 0.25fr));
+      grid-auto-rows: auto;
       grid-gap: 0.5rem;
+      justify-content: center;
     }
   }
 

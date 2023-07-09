@@ -10,26 +10,33 @@ export const StyledDashboard = styled.div`
   .pie-chart {
     height: 100%;
     background-image: url(${PIE_CHART_BG});
+    background-size: cover;
+    background-position: center;
   }
   .line-chart {
     height: 100%;
     background-color: var(--dark-600);
   }
   .container {
-    margin: 0 10rem;
+    margin-inline: clamp(0.5rem, 10%, 10rem);
     height: 100%;
-    display: grid;
+    display: flex;
     grid-column-start: 1;
     grid-column-end: 3;
     overflow: hidden;
+    flex-direction: column;
+    align-items: center;
 
     .filters {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 4rem;
       margin-top: 1.5rem;
       margin-bottom: 1.5rem;
+      overflow: auto;
+      margin-inline: auto;
+      width: auto;
+      max-width: 100%;
     }
 
     .item-list {
@@ -38,6 +45,7 @@ export const StyledDashboard = styled.div`
       grid-template-columns: repeat(auto-fit, minmax(14.625rem, 1fr));
       grid-auto-rows: auto;
       grid-gap: 0.5rem;
+      width: 100%;
     }
 
     .load-more {

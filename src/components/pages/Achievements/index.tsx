@@ -1,33 +1,75 @@
 import React, { useState } from "react";
+import myRecommend from "src/assets/images/MyRecommend-1.jpg";
+import RecordBase from "src/components/common/RecordBase";
+import ButtonBase from "src/components/common/ButtonBase";
+import LineChartBase from "src/components/common/LineChartBase";
+import ItemListBase, { ItemRecord } from "src/components/common/ItemListBase";
+
 import { StyledAchievements } from "./style";
 
 const Achievements: React.FC = () => {
-  const [itemList, setItemList] = useState([
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
+  const [itemList, setItemList] = useState<ItemRecord[]>([
+    {
+      date: "2021.05.21",
+      time: "23:25",
+      content:
+        "私の日記の記録が一部表示されます。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+    },
+    {
+      date: "2021.05.21",
+      time: "23:25",
+      content:
+        "私の日記の記録が一部表示されます。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+    },
+    {
+      date: "2021.05.21",
+      time: "23:25",
+      content:
+        "私の日記の記録が一部表示されます。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+    },
+    {
+      date: "2021.05.21",
+      time: "23:25",
+      content:
+        "私の日記の記録が一部表示されます。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+    },
   ]);
   const [featureList, setFeatureList] = useState([
-    { name: "Feature 1", describe: "", isActive: false },
-    { name: "Feature 2", describe: "", isActive: false },
-    { name: "Feature 3", describe: "", isActive: false },
+    {
+      title: "BODY RECORD",
+      describe: "自分のカラダの記録",
+      imageLink: myRecommend,
+    },
+    {
+      title: "BODY RECORD",
+      describe: "自分のカラダの記録",
+      imageLink: myRecommend,
+    },
+    {
+      title: "BODY RECORD",
+      describe: "自分のカラダの記録",
+      imageLink: myRecommend,
+    },
   ]);
+
+  const recordData: ItemRecord = {
+    date: "2021.05.21",
+    time: "23:25",
+    content:
+      "私の日記の記録が一部表示されます。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+  };
+
   const addItemList = () => {
     const listContainer = document.getElementById("diary-list");
 
     setItemList((prev) => [
       ...prev,
-      { date: "05.21", mealsOfTheDay: "Morning", imageLink: "" },
+      {
+        date: "2021.05.21",
+        time: "23:25",
+        content:
+          "私の日記の記録が一部表示されます。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+      },
     ]);
 
     listContainer && (listContainer.scrollTop = listContainer.scrollHeight);
@@ -36,33 +78,37 @@ const Achievements: React.FC = () => {
     <StyledAchievements>
       <div className="features">
         {featureList.map((feature, idx) => (
-          <div
+          <RecordBase
             key={idx}
-            style={{
-              width: "18rem",
-              height: "18rem",
-              background: "var(--primary-300-400)",
-            }}
-            className="filter"
-          >
-            {feature.name}
-          </div>
+            imageLink={feature.imageLink}
+            title={feature.title}
+            describe={feature.describe}
+          ></RecordBase>
         ))}
       </div>
-      <div className="body-record">Body Record Section</div>
+
+      <div className="body-record">
+        Body Record Section <LineChartBase></LineChartBase>
+      </div>
       <div className="my-exercise">Exercise Section</div>
       <div className="my-diary">
         Diary Section
         <div id="diary-list" className="diary-list">
           {itemList.map((item, idx) => (
-            <div key={idx} style={{ background: "#FFCC21" }}>
-              {item.date}
-            </div>
+            <ItemListBase
+              key={idx}
+              type="record"
+              data={recordData}
+            ></ItemListBase>
           ))}
         </div>
       </div>
       <div className="load-more">
-        <button onClick={addItemList}>Load More</button>
+        <ButtonBase
+          onClick={addItemList}
+          title="記録をもっと見る"
+          type="normal"
+        ></ButtonBase>
       </div>
     </StyledAchievements>
   );
