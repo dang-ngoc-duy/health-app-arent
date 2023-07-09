@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.div`
   height: 4rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
+
   background: var(--dark-500-text);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  padding-inline: clamp(0.5rem, 10%, 10rem);
 
   & > div:last-of-type {
     width: 100%;
@@ -44,7 +44,6 @@ export const StyledHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    justify-seft: end;
     gap: 0.5rem;
     cursor: pointer;
 
@@ -69,6 +68,9 @@ export const StyledHeader = styled.div`
 
   .menu-list {
     position: relative;
+    flex-shrink: 0;
+    flex-grow: 0;
+
     .toggle-menu {
       display: none;
       position: absolute;
@@ -185,5 +187,11 @@ export const StyledHeader = styled.div`
     transform: rotate(-45deg);
     top: 1.5rem;
     left: 0.46rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    .navi-memo-container {
+      display: none;
+    }
   }
 `;

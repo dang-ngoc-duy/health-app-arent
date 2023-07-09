@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.div`
   height: 8rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
+
   background: var(--dark-500-text);
   overflow: auto;
+  padding-inline: clamp(0.5rem, 10%, 10rem);
 
   display: flex;
   align-items: center;

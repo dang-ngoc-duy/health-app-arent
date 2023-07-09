@@ -49,7 +49,7 @@ const Header: React.FC = () => {
             <li>体重グラフ</li>
             <li>目標</li>
             <li>選択中のコース</li>
-            <li>コラム一覧</li>
+            <li onClick={() => navigate("/recommended")}>コラム一覧</li>
             <li>設定</li>
           </ul>
         </div>

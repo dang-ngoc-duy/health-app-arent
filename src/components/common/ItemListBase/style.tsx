@@ -96,7 +96,7 @@ export const StyledItemListDiary = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   aspect-ratio: 1/1;
 
   .date-time-block {
