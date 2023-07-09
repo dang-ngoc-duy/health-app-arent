@@ -42,16 +42,39 @@ export interface LineChartOptions
 
 export interface LineChartData extends ChartData<"line", number[], string> {}
 
+export interface LineChartHeader {
+  title: string;
+  dateTime: string;
+}
+
+export interface LineChartFilter {
+  id: number;
+  name: string;
+  isActive: boolean;
+}
+
 interface LineChartBaseProps {
   data: LineChartData;
   textColor?: string;
   gridLineColor?: string;
   options?: LineChartOptions;
   style?: React.CSSProperties;
+  header?: LineChartHeader;
+  filters?: LineChartFilter[];
+  onFiltersClick?: (item: LineChartFilter) => void;
 }
 
 const LineChartBase: React.FC<LineChartBaseProps> = (props) => {
-  const { data, textColor, gridLineColor, options, style } = props;
+  const {
+    data,
+    textColor,
+    gridLineColor,
+    options,
+    style,
+    header,
+    filters,
+    onFiltersClick,
+  } = props;
 
   ChartJS.register(
     CategoryScale,
@@ -85,6 +108,7 @@ const LineChartBase: React.FC<LineChartBaseProps> = (props) => {
         color: textColor ?? "black",
       },
     },
+
     scales: {
       x: {
         ticks: {
@@ -106,9 +130,34 @@ const LineChartBase: React.FC<LineChartBaseProps> = (props) => {
     ...style,
   };
 
+  const handleOnFilterClick = (item: LineChartFilter) => {
+    onFiltersClick && onFiltersClick(item);
+  };
+
   return (
     <StyledLineChartBase>
+      {header && (
+        <div className="line-chart-header">
+          <div>{header.title ?? ""}</div>
+          <div>{header.dateTime ?? ""}</div>
+        </div>
+      )}
+
       <Line options={options ?? optionsChart} data={data} style={chartStyle} />
+
+      {filters && filters.length && (
+        <div className="filter-block" style={!header ? { bottom: "20px" } : {}}>
+          {filters.map((item, idx) => (
+            <button
+              onClick={() => handleOnFilterClick(item)}
+              key={idx}
+              className={item.isActive ? "active" : ""}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+      )}
     </StyledLineChartBase>
   );
 };
