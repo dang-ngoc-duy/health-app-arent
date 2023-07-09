@@ -13,10 +13,7 @@ export const StyledDashboard = styled.div`
     background-size: cover;
     background-position: center;
   }
-  .line-chart {
-    height: 100%;
-    background-color: var(--dark-600);
-  }
+
   .container {
     margin-inline: clamp(0.5rem, 10%, 10rem);
     height: 100%;

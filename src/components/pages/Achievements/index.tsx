@@ -88,7 +88,7 @@ const Achievements: React.FC = () => {
       </div>
 
       <div className="body-record">
-        Body Record Section <LineChartBase></LineChartBase>
+        {/* Body Record Section <LineChartBase></LineChartBase> */}
       </div>
       <div className="my-exercise">Exercise Section</div>
       <div className="my-diary">

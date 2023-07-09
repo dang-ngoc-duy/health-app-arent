@@ -15,9 +15,11 @@ import {
   PluginChartOptions,
   ScaleChartOptions,
   LineControllerChartOptions,
+  ChartData,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { _DeepPartialObject } from "chart.js/dist/types/utils";
+import { StyledLineChartBase } from "./style";
 
 interface CoreOptions extends _DeepPartialObject<CoreChartOptions<"line">> {}
 interface ElementOptions
@@ -30,7 +32,7 @@ interface ScaleOptions extends _DeepPartialObject<ScaleChartOptions<"line">> {}
 interface LineControllerOptions
   extends _DeepPartialObject<LineControllerChartOptions> {}
 
-interface LineChartBaseOptions
+export interface LineChartOptions
   extends CoreOptions,
     ElementOptions,
     PluginOptions,
@@ -38,7 +40,19 @@ interface LineChartBaseOptions
     ScaleOptions,
     LineControllerOptions {}
 
-const LineChartDarkMode = () => {
+export interface LineChartData extends ChartData<"line", number[], string> {}
+
+interface LineChartBaseProps {
+  data: LineChartData;
+  textColor?: string;
+  gridLineColor?: string;
+  options?: LineChartOptions;
+  style?: React.CSSProperties;
+}
+
+const LineChartBase: React.FC<LineChartBaseProps> = (props) => {
+  const { data, textColor, gridLineColor, options, style } = props;
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -50,88 +64,53 @@ const LineChartDarkMode = () => {
     Legend
   );
 
-  // Set up colors for dark mode
-  const darkModeColors = {
-    background: "rgba(65, 65, 65)",
-    border: "rgb(255, 255, 255)",
-    dataset1: "rgb(255, 204, 33)",
-    dataset2: "rgb(143, 233, 208)",
-  };
-
-  const labels = [
-    "6月",
-    "7月",
-    "8月",
-    "9月",
-    "10月",
-    "11月",
-    "12月",
-    "1月",
-    "2月",
-    "3月",
-    "4月",
-    "5月",
-  ];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56], // replace with your data points
-        borderColor: darkModeColors.dataset1,
-        backgroundColor: darkModeColors.dataset1,
-      },
-      {
-        label: "Dataset 2",
-        data: [28, 48, 40, 19, 86, 27, 90, 28, 48, 40, 19, 86], // replace with your data points
-        borderColor: darkModeColors.dataset2,
-        backgroundColor: darkModeColors.dataset2,
-      },
-    ],
-  };
-
-  const options: LineChartBaseOptions = {
+  const optionsChart: LineChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+
     hover: {
-      mode: "point", // mode for activating items during hover ('point', 'nearest', 'index', 'dataset', 'x', 'y')
-      intersect: false, // if true, only trigger hover when mouse is over an item
+      mode: "point",
+      intersect: false,
     },
     plugins: {
       legend: {
-        display: false, // This will remove the legend
+        display: false,
         labels: {
-          color: darkModeColors.border, // Text color in dark mode
+          color: textColor ?? "black",
         },
       },
       title: {
-        display: true,
-        text: "BODY RECORD",
-        color: darkModeColors.border, // Text color in dark mode
+        display: false,
+        text: "",
+        color: textColor ?? "black",
       },
     },
     scales: {
       x: {
         ticks: {
-          color: darkModeColors.border, // Text color in dark mode
+          color: textColor ?? "black",
         },
         grid: {
-          color: darkModeColors.border, // Grid line color in dark mode
+          color: gridLineColor ?? "black",
         },
       },
       y: {
-        display: false, // This hides the y-axis
+        display: false,
       },
     },
   };
 
   const chartStyle = {
-    background: darkModeColors.background, // Chart background color in dark mode
-    color: darkModeColors.border, // Text color in dark mode
+    background: "transparent",
+    color: textColor ?? "black",
+    ...style,
   };
 
-  return <Line options={options} data={data} style={chartStyle} />;
+  return (
+    <StyledLineChartBase>
+      <Line options={options ?? optionsChart} data={data} style={chartStyle} />
+    </StyledLineChartBase>
+  );
 };
 
-export default LineChartDarkMode;
+export default LineChartBase;
