@@ -2,15 +2,17 @@ import React from "react";
 import { StyledRecordBase } from "./style";
 
 export interface RecordBaseProps {
+  id: string;
   imageLink: string;
   title: string;
   describe: string;
+  onClick?: (id: string) => void;
 }
 
 const RecordBase: React.FC<RecordBaseProps> = (props) => {
-  const { imageLink, title, describe } = props;
+  const { id, imageLink, title, describe, onClick } = props;
   return (
-    <StyledRecordBase>
+    <StyledRecordBase onClick={() => onClick && onClick(id)}>
       <h3>{title}</h3>
       <span>{describe}</span>
       <div

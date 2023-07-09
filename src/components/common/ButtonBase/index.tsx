@@ -2,22 +2,25 @@ import React from "react";
 import { StyledButtonHexagon, StyledButtonBase } from "./style";
 
 export interface ButtonBaseProps {
+  id?: string;
   iconLink?: string;
   title: string;
   type: "normal" | "hexagon";
-  onClick?: () => void;
+  onClick?: (id?: string) => void;
 }
 
 const ButtonBase: React.FC<ButtonBaseProps> = (props) => {
-  const { iconLink, title, type = "normal", onClick } = props;
+  const { id, iconLink, title, type = "normal", onClick } = props;
 
   return type === "hexagon" ? (
-    <StyledButtonHexagon onClick={onClick}>
+    <StyledButtonHexagon onClick={() => onClick && onClick(id)}>
       <img src={iconLink} alt="icon_knife" />
       {title}
     </StyledButtonHexagon>
   ) : (
-    <StyledButtonBase onClick={onClick}>{title}</StyledButtonBase>
+    <StyledButtonBase onClick={() => onClick && onClick()}>
+      {title}
+    </StyledButtonBase>
   );
 };
 

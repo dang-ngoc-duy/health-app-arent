@@ -48,11 +48,15 @@ const Header: React.FC = () => {
             自分の記録
           </div>
           <div className="navi-memo">
-            <img src={iconChallenge} alt="icon_challenge"></img>
+            <div>
+              <img src={iconChallenge} alt="icon_challenge"></img>
+            </div>
             チャレンジ
           </div>
           <div className="navi-memo">
-            <img src={iconInfo} alt="icon_info"></img>
+            <div>
+              <img src={iconInfo} alt="icon_info"></img>
+            </div>
             お知らせ
           </div>
         </div>

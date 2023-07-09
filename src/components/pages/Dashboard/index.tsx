@@ -1,5 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import m01 from "src/assets/images/m01.jpg";
+import m02 from "src/assets/images/m02.jpg";
+import m03 from "src/assets/images/m03.jpg";
+import l01 from "src/assets/images/l01.jpg";
+import l02 from "src/assets/images/l02.jpg";
+import l03 from "src/assets/images/l03.jpg";
+import d01 from "src/assets/images/d01.jpg";
+import d02 from "src/assets/images/d02.jpg";
+import s01 from "src/assets/images/s01.jpg";
+
 import iconCup from "src/assets/icons/icon_cup.svg";
 import iconKnife from "src/assets/icons/icon_knife.svg";
 import ButtonBase from "src/components/common/ButtonBase";
@@ -12,19 +21,24 @@ import { StyledDashboard } from "./style";
 
 const Dashboard: React.FC = () => {
   const [itemList, setItemList] = useState<ItemPhoto[]>([
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: m01 },
-    { date: "05.21", mealsOfTheDay: "Lunch", imageLink: m01 },
-    { date: "05.21", mealsOfTheDay: "Dinner", imageLink: m01 },
-    { date: "05.21", mealsOfTheDay: "Lunch", imageLink: m01 },
-    { date: "05.21", mealsOfTheDay: "Morning", imageLink: m01 },
-    { date: "05.21", mealsOfTheDay: "Snack", imageLink: m01 },
+    { id: "M", date: "05.21", mealsOfTheDay: "Morning", imageLink: m01 },
+    { id: "M", date: "05.21", mealsOfTheDay: "Morning", imageLink: m02 },
+    { id: "M", date: "05.21", mealsOfTheDay: "Morning", imageLink: m03 },
+    { id: "L", date: "05.21", mealsOfTheDay: "Lunch", imageLink: l01 },
+    { id: "L", date: "05.21", mealsOfTheDay: "Lunch", imageLink: l02 },
+    { id: "L", date: "05.21", mealsOfTheDay: "Lunch", imageLink: l03 },
+    { id: "D", date: "05.21", mealsOfTheDay: "Dinner", imageLink: d01 },
+    { id: "D", date: "05.21", mealsOfTheDay: "Dinner", imageLink: d02 },
+    { id: "S", date: "05.21", mealsOfTheDay: "Snack", imageLink: s01 },
   ]);
 
+  const [showList, setShowList] = useState<ItemPhoto[]>(itemList);
+
   const [filterList, setFilterList] = useState([
-    { title: "Morning", icon: iconKnife },
-    { title: "Lunch", icon: iconKnife },
-    { title: "Dinner", icon: iconKnife },
-    { title: "Snack", icon: iconCup },
+    { id: "M", title: "Morning", icon: iconKnife },
+    { id: "L", title: "Lunch", icon: iconKnife },
+    { id: "D", title: "Dinner", icon: iconKnife },
+    { id: "S", title: "Snack", icon: iconCup },
   ]);
 
   const dataChart: LineChartData = {
@@ -63,11 +77,20 @@ const Dashboard: React.FC = () => {
 
     setItemList((prev) => [
       ...prev,
-      { date: "05.21", mealsOfTheDay: "Snack", imageLink: m01 },
+      { id: "S", date: "05.21", mealsOfTheDay: "Snack", imageLink: s01 },
     ]);
 
     listContainer && (listContainer.scrollTop = listContainer.scrollHeight);
   };
+
+  const handleFilterClick = (id: string | undefined) => {
+    const newList = itemList.filter((item) => item.id === id);
+    setShowList(newList);
+  };
+
+  useEffect(() => {
+    setShowList(itemList);
+  }, [itemList]);
 
   return (
     <StyledDashboard>
@@ -86,15 +109,17 @@ const Dashboard: React.FC = () => {
         <div className="filters">
           {filterList.map((filter, idx) => (
             <ButtonBase
+              onClick={handleFilterClick}
               key={idx}
               type="hexagon"
               iconLink={filter.icon}
               title={filter.title || "--"}
+              id={filter.id}
             ></ButtonBase>
           ))}
         </div>
         <div id="item-list" className="item-list">
-          {itemList.map((item, idx) => (
+          {showList.map((item, idx) => (
             <ItemListBase key={idx} type="photo" data={item}></ItemListBase>
           ))}
         </div>

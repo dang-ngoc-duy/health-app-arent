@@ -58,6 +58,34 @@ export const StyledHeader = styled.div`
       background-color: rgba(255, 150, 60, 0.15);
     }
 
+    &:last-of-type div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &::before {
+        content: "1";
+        height: 1rem;
+        width: 1rem;
+        position: absolute;
+        border-radius: 100%;
+        display: flex;
+        background: var(--primary-500);
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        font-family: Inter;
+        font-size: 0.625rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 0.75rem;
+        top: 0;
+        right: -0.25rem;
+      }
+    }
+
     img {
       width: 2rem;
       height: 2rem;

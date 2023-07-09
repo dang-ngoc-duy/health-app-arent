@@ -19,6 +19,7 @@ export interface ItemRecord extends ItemBase {
 }
 
 interface ItemBase {
+  id: string;
   date: string;
   time?: string;
   imageLink?: string;
