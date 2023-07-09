@@ -2,11 +2,10 @@ import { styled } from "styled-components";
 
 export const StyledItemListPhoto = styled.div`
   position: relative;
-  width: 234px;
-  height: 234px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  aspect-ratio: 1 / 1;
 
   span {
     position: absolute;

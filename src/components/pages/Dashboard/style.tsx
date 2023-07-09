@@ -34,10 +34,9 @@ export const StyledDashboard = styled.div`
 
     .item-list {
       overflow-y: auto;
-
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(14.625rem, 1fr));
-      grid-auto-rows: 14.625rem;
+      grid-auto-rows: auto;
       grid-gap: 0.5rem;
     }
 
