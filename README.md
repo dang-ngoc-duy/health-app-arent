@@ -36,10 +36,10 @@
     - [Installation](#installation)
   - [Login Feature](#login-feature)
   - [Mocking API with JSON Server](#mocking-api-with-json-server)
-    - [Usage](#usage)
-    - [License](#license)
+  - [Usage](#usage)
   - [Future Plans](#future-plans)
-    - [Contact](#contact)
+  - [License](#license)
+  - [Contact](#contact)
 
 <!-- ABOUT THE PROJECT -->
 
@@ -54,9 +54,11 @@ Here's why:
 
 Demo pictures:
 
+<img width="964" alt="Screenshot 2023-07-11 at 04 30 32" src="https://github.com/duydangit/health-app-arent/assets/33681740/2e2513cb-c64a-4abd-94f1-501a38fb0468">
 <img width="1199" alt="Screenshot 2023-07-10 at 22 22 36" src="https://github.com/duydangit/health-app-arent/assets/33681740/7037c4a3-1757-44f3-905a-eef6f23a1018">
 <img width="1200" alt="Screenshot 2023-07-10 at 22 15 52" src="https://github.com/duydangit/health-app-arent/assets/33681740/c940762c-db07-4f56-aac3-19c3ae013738">
 <img width="1203" alt="Screenshot 2023-07-10 at 22 05 28" src="https://github.com/duydangit/health-app-arent/assets/33681740/7f536090-5afe-43bf-b03e-4bbad5e7e546">
+
 
 ### Built With
 
@@ -98,19 +100,6 @@ This is a list of things you need to use the software and how to install them.
   npm install
 ```
 
-<!-- LOGIN FEATURE -->
-
-## Login Feature
-
-The application now includes a login feature. This allows users to access the top page and achievements page, which are only accessible to logged-in users. The recommended page can still be accessed without logging in.
-
-For testing purposes, you can use the following dummy account to log in:
-
-- Username: admin
-- Password: 12345678
-
-Once logged in, you will be able to access the top page and achievements page.
-
 <!-- MOCK API -->
 
 ## Mocking API with JSON Server
@@ -130,17 +119,24 @@ The mock API server is integrated into the start script of the project. When you
   npm start
 ```
 
+<!-- LOGIN FEATURE -->
+
+## Login Feature
+
+The application now includes a login feature. This allows users to access the top page and achievements page, which are only accessible to logged-in users. The recommended page can still be accessed without logging in.
+
+For testing purposes, you can use the following dummy account to log in:
+
+- `Username: admin`
+- `Password: 12345678`
+
+Once logged in, you will be able to access the top page and achievements page.
+
 <!-- USAGE EXAMPLES -->
 
-### Usage
+## Usage
 
 Once you have the project set up, you can run `npm start` to start the development server and open the app in your browser.
-
-<!-- LICENSE -->
-
-### License
-
-Distributed under the `MIT` License.
 
 <!-- FUTURE PLANS -->
 
@@ -156,9 +152,15 @@ In addition to these, we also plan to incorporate `Doppler` into our development
 
 Stay tuned for these exciting updates!
 
+<!-- LICENSE -->
+
+## License
+
+Distributed under the `MIT` License.
+
 <!-- CONTACT -->
 
-### Contact
+## Contact
 
 Duy Dang - duydangit24@gmail.com
 
