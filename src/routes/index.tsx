@@ -11,4 +11,4 @@ const mainRoutes: RouteObject[] = [
   { path: "*", element: <NotFound /> },
 ];
 
-export default mainRoutes;
+export const rootRoutes: RouteObject[] = [...mainRoutes];

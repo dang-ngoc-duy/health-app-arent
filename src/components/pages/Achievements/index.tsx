@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonBase from "src/components/common/ButtonBase";
 import { LineChartFilter } from "src/components/common/LineChartBase";
 import { useAchievementFetch } from "src/hooks/useAchievementFetch";
@@ -9,8 +9,12 @@ import Features from "./Features";
 import MyDiary from "./MyDiary";
 import MyExercise from "./MyExercise";
 import { StyledAchievements } from "./style";
+import { useUserLogin } from "src/hooks/useUserLogin";
+import { useNavigate } from "react-router-dom";
 
 const Achievements: React.FC = () => {
+  const navigate = useNavigate();
+  const { userProfile } = useUserLogin();
   const {
     itemList,
     featureList,
@@ -56,6 +60,12 @@ const Achievements: React.FC = () => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    if (!userProfile) {
+      navigate("/login");
+    }
+  });
 
   return (
     <StyledAchievements>

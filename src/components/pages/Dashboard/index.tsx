@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ButtonBase from "src/components/common/ButtonBase";
 import { useDashboardFetch } from "src/hooks/useDashboardFetch";
 import { QueryParams } from "src/services/models";
@@ -8,8 +8,12 @@ import ItemList from "./ItemList";
 import LineChart from "./LineChart";
 import ProgressCircle from "./ProgressCircle";
 import { StyledDashboard } from "./style";
+import { useNavigate } from "react-router-dom";
+import { useUserLogin } from "src/hooks/useUserLogin";
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+  const { userProfile } = useUserLogin();
   const {
     itemList,
     showList,
@@ -36,6 +40,12 @@ const Dashboard: React.FC = () => {
     const newList = itemList.filter((item) => item.id === id);
     setShowList(newList);
   };
+
+  useEffect(() => {
+    if (!userProfile) {
+      navigate("/login");
+    }
+  });
 
   return (
     <StyledDashboard>

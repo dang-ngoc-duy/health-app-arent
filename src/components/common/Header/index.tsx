@@ -34,6 +34,11 @@ const Header: React.FC = () => {
     setMenuToggleClass("");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("USER_PROFILE");
+    navigate("/login");
+  };
+
   return (
     <StyledHeader>
       <div onClick={() => navigate("/")} className="app-logo">
@@ -73,6 +78,7 @@ const Header: React.FC = () => {
             <li>選択中のコース</li>
             <li onClick={() => handleNavigate("/recommended")}>コラム一覧</li>
             <li>設定</li>
+            <li onClick={handleLogout}>ログアウト</li>
           </ul>
         </div>
       </div>
