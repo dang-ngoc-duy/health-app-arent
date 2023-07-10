@@ -7,7 +7,7 @@ export const StyledDashboard = styled.div`
   grid-template-rows: 19.75rem auto;
   align-items: center;
 
-  .pie-chart {
+  .progress-circle {
     height: 100%;
     background-image: url(${PIE_CHART_BG});
     background-size: cover;

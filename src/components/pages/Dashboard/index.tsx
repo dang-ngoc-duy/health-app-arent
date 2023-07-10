@@ -1,58 +1,21 @@
 import React, { useEffect, useState } from "react";
-import iconCup from "src/assets/icons/icon_cup.svg";
-import iconKnife from "src/assets/icons/icon_knife.svg";
 import ButtonBase from "src/components/common/ButtonBase";
+import EmptyData from "src/components/common/EmptyData";
 import ItemListBase, { ItemPhoto } from "src/components/common/ItemListBase";
 import LineChartBase, {
   LineChartData,
 } from "src/components/common/LineChartBase";
 import DashboardServices from "src/services/dashboard";
+import { DashboardFilterData, QueryParams } from "src/services/models";
 
 import { StyledDashboard } from "./style";
-import EmptyData from "src/components/common/EmptyData";
-import { QueryParams } from "src/services/models";
 
 const Dashboard: React.FC = () => {
   const [itemList, setItemList] = useState<ItemPhoto[]>([]);
   const [showList, setShowList] = useState<ItemPhoto[]>(itemList);
-  const [filterList, setFilterList] = useState([
-    { id: "M", title: "Morning", icon: iconKnife },
-    { id: "L", title: "Lunch", icon: iconKnife },
-    { id: "D", title: "Dinner", icon: iconKnife },
-    { id: "S", title: "Snack", icon: iconCup },
-  ]);
-  const dataChart: LineChartData = {
-    labels: [
-      "6月",
-      "7月",
-      "8月",
-      "9月",
-      "10月",
-      "11月",
-      "12月",
-      "1月",
-      "2月",
-      "3月",
-      "4月",
-      "5月",
-    ],
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [85, 83, 65, 73, 68, 58, 68, 55, 50, 49, 45, 49],
-        borderColor: "rgb(255, 204, 33)",
-        backgroundColor: "rgb(255, 204, 33)",
-      },
-      {
-        label: "Dataset 2",
-        data: [85, 80, 70, 68, 54, 53, 44, 43, 40, 30, 26, 22],
-        borderColor: "rgb(143, 233, 208)",
-        backgroundColor: "rgb(143, 233, 208)",
-      },
-    ],
-  };
+  const [filterList, setFilterList] = useState<DashboardFilterData[]>([]);
+  const [lineDataChart, setLineDataChart] = useState<LineChartData>();
   const [currentPagination, setCurrentPagination] = useState<QueryParams>({
-    _page: "1",
     _limit: "8",
   });
 
@@ -74,6 +37,8 @@ const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
+    fetchLineDataChart();
+    fetchFilterList();
     fetchMealList(currentPagination);
   }, []);
 
@@ -82,9 +47,26 @@ const Dashboard: React.FC = () => {
   }, [itemList]);
 
   // **** FETCH API AREA **** //
+  const fetchLineDataChart = () => {
+    DashboardServices.getLineChartData<LineChartData>().then((res) => {
+      const data = res?.data;
+
+      if (data) {
+        setLineDataChart(data);
+      }
+    });
+  };
+  const fetchFilterList = () => {
+    DashboardServices.getFilterList<DashboardFilterData[]>().then((res) => {
+      const data = res?.data;
+      if (data) {
+        setFilterList(data);
+      }
+    });
+  };
   const fetchMealList = (queryParams: QueryParams) => {
-    DashboardServices.getMeals<ItemPhoto[]>(queryParams).then((res) => {
-      const data = res.data;
+    DashboardServices.getMealList<ItemPhoto[]>(queryParams).then((res) => {
+      const data = res?.data;
       if (data) {
         setItemList(data);
       }
@@ -93,29 +75,42 @@ const Dashboard: React.FC = () => {
 
   return (
     <StyledDashboard>
-      <div className="pie-chart">Pie Chart</div>
-      <LineChartBase
-        data={dataChart}
-        textColor="white"
-        gridLineColor="white"
-        style={{
-          background: "var(--dark-600)",
-          paddingInline: "8%",
-          paddingBlock: "2%",
-        }}
-      ></LineChartBase>
+      <div className="progress-circle"></div>
+      {lineDataChart ? (
+        <LineChartBase
+          data={lineDataChart}
+          textColor="white"
+          gridLineColor="white"
+          style={{
+            background: "var(--dark-600)",
+            paddingInline: "8%",
+            paddingBlock: "2%",
+          }}
+        ></LineChartBase>
+      ) : (
+        <EmptyData
+          style={{
+            height: "100%",
+            width: "100%",
+            background: "var(--dark-600)",
+            color: "#fff",
+          }}
+        ></EmptyData>
+      )}
       <div className="container">
         <div className="filters">
-          {filterList.map((filter, idx) => (
-            <ButtonBase
-              onClick={handleFilterClick}
-              key={idx}
-              type="hexagon"
-              iconLink={filter.icon}
-              title={filter.title || "--"}
-              id={filter.id}
-            ></ButtonBase>
-          ))}
+          {filterList.length
+            ? filterList.map((filter, idx) => (
+                <ButtonBase
+                  onClick={handleFilterClick}
+                  key={idx}
+                  type="hexagon"
+                  iconLink={filter.icon}
+                  title={filter.title || "--"}
+                  id={filter.id}
+                ></ButtonBase>
+              ))
+            : null}
         </div>
         <div id="item-list" className="item-list">
           {showList.length ? (

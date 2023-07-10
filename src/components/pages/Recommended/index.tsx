@@ -1,132 +1,89 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RecommendedBase from "src/components/common/RecommendedBase";
 import ItemListBase, { ItemColumn } from "src/components/common/ItemListBase";
-import column1 from "src/assets/images/column-1.jpg";
-import column2 from "src/assets/images/column-2.jpg";
-import column3 from "src/assets/images/column-3.jpg";
-import column4 from "src/assets/images/column-4.jpg";
-import column5 from "src/assets/images/column-5.jpg";
-import column6 from "src/assets/images/column-6.jpg";
-import column7 from "src/assets/images/column-7.jpg";
-import column8 from "src/assets/images/column-8.jpg";
 import { StyledRecommended } from "./style";
 import ButtonBase from "src/components/common/ButtonBase";
+import { QueryParams, RecommendedFilter } from "src/services/models";
+import EmptyData from "src/components/common/EmptyData";
+import RecommendedServices from "src/services/recommended";
 
 const Recommended: React.FC = () => {
-  const [itemList, setItemList] = useState<ItemColumn[]>([
-    {
-      id: "1",
-      imageLink: column1,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "2",
-      imageLink: column2,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "3",
-      imageLink: column3,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "4",
-      imageLink: column4,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "5",
-      imageLink: column5,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "6",
-      imageLink: column6,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "7",
-      imageLink: column7,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-    {
-      id: "8",
-      imageLink: column8,
-      date: "2021.05.17",
-      time: "23:25",
-      describe:
-        "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-      hashTag: ["#魚料理", "#和食", "#DHA"],
-    },
-  ]);
-  const [recommendedList, setRecommendedList] = useState([
-    { title: "RECOMMENDED COLUMN", describe: "オススメ" },
-    { title: "RECOMMENDED DIET", describe: "ダイエット" },
-    { title: "RECOMMENDED BEAUTY", describe: "美容" },
-    { title: "RECOMMENDED HEALTH", describe: "健康" },
-  ]);
+  const [itemList, setItemList] = useState<ItemColumn[]>([]);
+  const [showList, setShowList] = useState<ItemColumn[]>(itemList);
+  const [recommendedList, setRecommendedList] = useState<RecommendedFilter[]>(
+    []
+  );
+  const [currentPagination, setCurrentPagination] = useState<QueryParams>({
+    _limit: "8",
+  });
 
   const addItemList = () => {
-    const listContainer = document.getElementById("item-list");
-
-    setItemList((prev) => [
-      ...prev,
-      {
-        id: "",
-        imageLink: column8,
-        date: "2021.05.17",
-        time: "23:25",
-        describe:
-          "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-        hashTag: ["#魚料理", "#和食", "#DHA"],
-      },
-    ]);
-
+    const newPaginationLimit = parseInt(currentPagination._limit as string) * 2;
+    const newPagination: QueryParams = {
+      ...currentPagination,
+      _limit: newPaginationLimit.toString(),
+    };
+    setCurrentPagination(newPagination);
+    fetchPostsList(newPagination);
+    const listContainer = document.getElementById("diary-list");
     listContainer && (listContainer.scrollTop = listContainer.scrollHeight);
   };
+
+  const handleFilterClick = (id: string | undefined) => {
+    const newList = itemList.filter((item) => item.id === id);
+    setShowList(newList);
+  };
+
+  useEffect(() => {
+    fetchFilterList();
+    fetchPostsList(currentPagination);
+  }, []);
+
+  useEffect(() => {
+    setShowList(itemList);
+  }, [itemList]);
+
+  // **** FETCH API AREA **** //
+  const fetchFilterList = () => {
+    RecommendedServices.getFilterList<RecommendedFilter[]>().then((res) => {
+      const data = res?.data;
+      if (data) {
+        setRecommendedList(data);
+      }
+    });
+  };
+  const fetchPostsList = (queryParams: QueryParams) => {
+    RecommendedServices.getPostsList<ItemColumn[]>(queryParams).then((res) => {
+      const data = res?.data;
+      if (data) {
+        setItemList(data);
+      }
+    });
+  };
+
   return (
     <StyledRecommended>
       <div className="recommend-filters">
-        {recommendedList.map((recommended, idx) => (
-          <RecommendedBase
-            key={idx}
-            title={recommended.title}
-            describe={recommended.describe}
-          ></RecommendedBase>
-        ))}
+        {recommendedList.length
+          ? recommendedList.map((recommended, idx) => (
+              <RecommendedBase
+                id={recommended.id}
+                onClick={handleFilterClick}
+                key={idx}
+                title={recommended.title}
+                describe={recommended.describe}
+              ></RecommendedBase>
+            ))
+          : null}
       </div>
       <div id="item-list" className="item-list">
-        {itemList.map((item, idx) => (
-          <ItemListBase key={idx} type="column" data={item}></ItemListBase>
-        ))}
+        {showList.length ? (
+          showList.map((item, idx) => (
+            <ItemListBase key={idx} type="column" data={item}></ItemListBase>
+          ))
+        ) : (
+          <EmptyData></EmptyData>
+        )}
       </div>
       <div className="load-more">
         <ButtonBase

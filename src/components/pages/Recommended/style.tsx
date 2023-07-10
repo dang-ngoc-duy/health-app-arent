@@ -15,6 +15,7 @@ export const StyledRecommended = styled.div`
     grid-gap: 2.5rem;
     justify-content: space-between;
     overflow-x: auto;
+    cursor: pointer;
   }
 
   .item-list {

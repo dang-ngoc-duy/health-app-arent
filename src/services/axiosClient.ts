@@ -42,7 +42,7 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     // Handle errors
-    throw error;
+    console.error("An error occurred:", error);
   }
 );
 

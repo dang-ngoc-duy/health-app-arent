@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import axiosClient from "../axiosClient";
 import { QueryParams } from "../models";
 
@@ -6,19 +5,19 @@ const endPoint = "/dashboard";
 
 const DashboardServices = {
   //* GET - Methods
-  getProgressBarData: () => {
-    const url = endPoint + "/chart/pie";
-    return axiosClient.get(url);
+  getProgressBarData: <T>() => {
+    const url = endPoint + "/progress_circle";
+    return axiosClient.get<T>(url);
   },
-  getLineChartData: () => {
-    const url = endPoint + "/chart/line";
-    return axiosClient.get(url);
+  getLineChartData: <T>() => {
+    const url = endPoint + "/chart_line";
+    return axiosClient.get<T>(url);
   },
-  getFilterList: () => {
+  getFilterList: <T>() => {
     const url = endPoint + `/filters`;
-    return axiosClient.get(url);
+    return axiosClient.get<T>(url);
   },
-  getMeals: <T>(params: QueryParams) => {
+  getMealList: <T>(params: QueryParams) => {
     const url = endPoint + `/meals`;
     return axiosClient.get<T>(url, { params });
   },

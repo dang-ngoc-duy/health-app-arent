@@ -13,7 +13,7 @@ export const StyledRecommendedBase = styled.div`
   font-style: normal;
   font-weight: 300;
   line-height: 26px;
-  min-width: 164px;
+  min-width: 200px;
   aspect-ratio: 13.5 / 9;
 
   p {
