@@ -1,8 +1,8 @@
 const jsonServer = require("json-server");
 const server = jsonServer.create();
-const dashboardRouters = jsonServer.router(
-  "src/services/mock-db/dashboard.json"
-);
+const dashboardRouters = jsonServer.router("mock-db/dashboard.json");
+const achievementsRouters = jsonServer.router("mock-db/achievements.json");
+const recommendedRouters = jsonServer.router("mock-db/recommended.json");
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
@@ -24,6 +24,8 @@ server.get("/dashboard/meals", (req, res) => {
 });
 
 server.use("/dashboard", dashboardRouters);
+server.use("/achievements", achievementsRouters);
+server.use("/recommended", recommendedRouters);
 
 const port = 3001;
 
