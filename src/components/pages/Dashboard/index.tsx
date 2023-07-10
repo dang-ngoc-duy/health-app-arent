@@ -6,7 +6,7 @@ import { QueryParams } from "src/services/models";
 import Filters from "./Filters";
 import ItemList from "./ItemList";
 import LineChart from "./LineChart";
-import ProgressCircle from "./ProgressCircle/inex";
+import ProgressCircle from "./ProgressCircle";
 import { StyledDashboard } from "./style";
 
 const Dashboard: React.FC = () => {
