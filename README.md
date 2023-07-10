@@ -45,6 +45,13 @@ Here's why:
 * Health is a top priority, and having a tool that makes it easy to track health data can make a big difference.
 * This app is designed to be user-friendly and intuitive, making it easy for anyone to use.
 
+Demo pictures:
+
+<img width="1199" alt="Screenshot 2023-07-10 at 22 22 36" src="https://github.com/duydangit/health-app-arent/assets/33681740/7037c4a3-1757-44f3-905a-eef6f23a1018">
+<img width="1200" alt="Screenshot 2023-07-10 at 22 15 52" src="https://github.com/duydangit/health-app-arent/assets/33681740/c940762c-db07-4f56-aac3-19c3ae013738">
+<img width="1203" alt="Screenshot 2023-07-10 at 22 05 28" src="https://github.com/duydangit/health-app-arent/assets/33681740/7f536090-5afe-43bf-b03e-4bbad5e7e546">
+
+
 ### Built With
 
 This project was built with the following technologies:
