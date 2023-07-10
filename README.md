@@ -1,46 +1,113 @@
-# Getting Started with Create React App
+# health-app-arent
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/duydangit/health-app-arent">
+    <img src="src/assets/icons/app_logo.svg" alt="Logo">
+  </a>
 
-## Available Scripts
+  <h3 align="center">Health App - Arent</h3>
 
-In the project directory, you can run:
+  <p align="center">
+    An awesome health app project built with React!
+    <br />
+    <a href="https://github.com/duydangit/health-app-arent"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/duydangit/health-app-arent">View Demo</a>
+    ·
+    <a href="https://github.com/duydangit/health-app-arent/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/duydangit/health-app-arent/issues">Request Feature</a>
+  </p>
+</div>
 
-### `npm start`
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Mocking API with JSON Server](#mocking-api-with-json-server)
+* [Usage](#usage)
+* [License](#license)
+* [Contact](#contact)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-### `npm test`
+This project is a health app built with React. It's designed to help users track their health data and make informed decisions about their lifestyle.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Here's why:
+* Health is a top priority, and having a tool that makes it easy to track health data can make a big difference.
+* This app is designed to be user-friendly and intuitive, making it easy for anyone to use.
 
-### `npm run build`
+Demo pictures:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="1199" alt="Screenshot 2023-07-10 at 22 22 36" src="https://github.com/duydangit/health-app-arent/assets/33681740/7037c4a3-1757-44f3-905a-eef6f23a1018">
+<img width="1200" alt="Screenshot 2023-07-10 at 22 15 52" src="https://github.com/duydangit/health-app-arent/assets/33681740/c940762c-db07-4f56-aac3-19c3ae013738">
+<img width="1203" alt="Screenshot 2023-07-10 at 22 05 28" src="https://github.com/duydangit/health-app-arent/assets/33681740/7f536090-5afe-43bf-b03e-4bbad5e7e546">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Built With
 
-### `npm run eject`
+This project was built with the following technologies:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* [React](https://reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Styled Components](https://styled-components.com/)
+* [Axios](https://axios-http.com/)
+* [Chart.js](https://www.chartjs.org/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- GETTING STARTED -->
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To get a local copy up and running follow these simple steps.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Prerequisites
 
-## Learn More
+This is a list of things you need to use the software and how to install them.
+* npm
+```sh
+  npm install npm@latest -g
+```
+### Installation
+1. Clone the repo
+```sh
+  git clone https://github.com/duydangit/health-app-arent.git
+```
+2. Install NPM packages
+```sh
+  npm install
+```
+<!-- MOCK API -->
+## Mocking API with JSON Server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project uses [JSON Server](https://github.com/typicode/json-server) to mock the API. JSON Server is a great tool that lets you create a full fake REST API for development and testing purposes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The mock API is defined in the `mock-api.ts` file and includes the following endpoints:
+
+- `/dashboard`: Uses data from the `mock-db/dashboard.json` file.
+- `/achievements`: Uses data from the `mock-db/achievements.json` file.
+- `/recommended`: Uses data from the `mock-db/recommended.json` file.
+
+The mock API server is integrated into the start script of the project. When you start the project with the following command:
+
+```sh
+  npm start
+```
+
+<!-- USAGE EXAMPLES -->
+### Usage
+Once you have the project set up, you can run `npm start` to start the development server and open the app in your browser.
+<!-- LICENSE -->
+### License
+Distributed under the `MIT` License.
+<!-- CONTACT -->
+### Contact
+Duy Dang - duydangit24@gmail.com
+
+Project Link: https://github.com/duydangit/health-app-arent
