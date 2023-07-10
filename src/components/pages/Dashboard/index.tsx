@@ -1,46 +1,26 @@
 import React, { useEffect, useState } from "react";
-import m01 from "src/assets/images/m01.jpg";
-import m02 from "src/assets/images/m02.jpg";
-import m03 from "src/assets/images/m03.jpg";
-import l01 from "src/assets/images/l01.jpg";
-import l02 from "src/assets/images/l02.jpg";
-import l03 from "src/assets/images/l03.jpg";
-import d01 from "src/assets/images/d01.jpg";
-import d02 from "src/assets/images/d02.jpg";
-import s01 from "src/assets/images/s01.jpg";
-
 import iconCup from "src/assets/icons/icon_cup.svg";
 import iconKnife from "src/assets/icons/icon_knife.svg";
 import ButtonBase from "src/components/common/ButtonBase";
+import ItemListBase, { ItemPhoto } from "src/components/common/ItemListBase";
 import LineChartBase, {
   LineChartData,
 } from "src/components/common/LineChartBase";
-import ItemListBase, { ItemPhoto } from "src/components/common/ItemListBase";
+import DashboardServices from "src/services/dashboard";
 
 import { StyledDashboard } from "./style";
+import EmptyData from "src/components/common/EmptyData";
+import { QueryParams } from "src/services/models";
 
 const Dashboard: React.FC = () => {
-  const [itemList, setItemList] = useState<ItemPhoto[]>([
-    { id: "M", date: "05.21", mealsOfTheDay: "Morning", imageLink: m01 },
-    { id: "M", date: "05.21", mealsOfTheDay: "Morning", imageLink: m02 },
-    { id: "M", date: "05.21", mealsOfTheDay: "Morning", imageLink: m03 },
-    { id: "L", date: "05.21", mealsOfTheDay: "Lunch", imageLink: l01 },
-    { id: "L", date: "05.21", mealsOfTheDay: "Lunch", imageLink: l02 },
-    { id: "L", date: "05.21", mealsOfTheDay: "Lunch", imageLink: l03 },
-    { id: "D", date: "05.21", mealsOfTheDay: "Dinner", imageLink: d01 },
-    { id: "D", date: "05.21", mealsOfTheDay: "Dinner", imageLink: d02 },
-    { id: "S", date: "05.21", mealsOfTheDay: "Snack", imageLink: s01 },
-  ]);
-
+  const [itemList, setItemList] = useState<ItemPhoto[]>([]);
   const [showList, setShowList] = useState<ItemPhoto[]>(itemList);
-
   const [filterList, setFilterList] = useState([
     { id: "M", title: "Morning", icon: iconKnife },
     { id: "L", title: "Lunch", icon: iconKnife },
     { id: "D", title: "Dinner", icon: iconKnife },
     { id: "S", title: "Snack", icon: iconCup },
   ]);
-
   const dataChart: LineChartData = {
     labels: [
       "6月",
@@ -71,15 +51,20 @@ const Dashboard: React.FC = () => {
       },
     ],
   };
+  const [currentPagination, setCurrentPagination] = useState<QueryParams>({
+    _page: "1",
+    _limit: "8",
+  });
 
   const addItemList = () => {
+    const newPaginationLimit = parseInt(currentPagination._limit as string) * 2;
+    const newPagination: QueryParams = {
+      ...currentPagination,
+      _limit: newPaginationLimit.toString(),
+    };
+    setCurrentPagination(newPagination);
+    fetchMealList(newPagination);
     const listContainer = document.getElementById("item-list");
-
-    setItemList((prev) => [
-      ...prev,
-      { id: "S", date: "05.21", mealsOfTheDay: "Snack", imageLink: s01 },
-    ]);
-
     listContainer && (listContainer.scrollTop = listContainer.scrollHeight);
   };
 
@@ -89,8 +74,22 @@ const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
+    fetchMealList(currentPagination);
+  }, []);
+
+  useEffect(() => {
     setShowList(itemList);
   }, [itemList]);
+
+  // **** FETCH API AREA **** //
+  const fetchMealList = (queryParams: QueryParams) => {
+    DashboardServices.getMeals<ItemPhoto[]>(queryParams).then((res) => {
+      const data = res.data;
+      if (data) {
+        setItemList(data);
+      }
+    });
+  };
 
   return (
     <StyledDashboard>
@@ -119,9 +118,13 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
         <div id="item-list" className="item-list">
-          {showList.map((item, idx) => (
-            <ItemListBase key={idx} type="photo" data={item}></ItemListBase>
-          ))}
+          {showList.length ? (
+            showList.map((item, idx) => (
+              <ItemListBase key={idx} type="photo" data={item}></ItemListBase>
+            ))
+          ) : (
+            <EmptyData></EmptyData>
+          )}
         </div>
         <div className="load-more">
           <ButtonBase
