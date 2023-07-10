@@ -40,6 +40,7 @@ const Dashboard: React.FC = () => {
     fetchLineDataChart();
     fetchFilterList();
     fetchMealList(currentPagination);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

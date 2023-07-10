@@ -63,6 +63,7 @@ const Achievements: React.FC = () => {
     fetchBodyRecordList();
     fetchExerciseList();
     fetchDiaryList(currentPagination);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // **** FETCH API AREA **** //

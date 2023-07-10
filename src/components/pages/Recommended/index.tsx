@@ -37,6 +37,7 @@ const Recommended: React.FC = () => {
   useEffect(() => {
     fetchFilterList();
     fetchPostsList(currentPagination);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

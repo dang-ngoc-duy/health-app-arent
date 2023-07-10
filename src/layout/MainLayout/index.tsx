@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import { rootRoutes } from "src/routes";
 
 import StyledMainLayout from "./style";
+import ScrollTopButton from "src/components/common/ScrollTopButton";
 
 const MainLayout: React.FC = () => {
   const routes = useRoutes(rootRoutes);
@@ -10,6 +11,7 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <StyledMainLayout>{routes}</StyledMainLayout>
+      <ScrollTopButton />
     </>
   );
 };
