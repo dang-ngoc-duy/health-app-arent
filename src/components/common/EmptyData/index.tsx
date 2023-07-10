@@ -2,10 +2,19 @@ import React from "react";
 import noDataIcon from "src/assets/images/empty-box.png";
 import { StyledEmptyData } from "./style";
 
-const EmptyData: React.FC = () => {
+interface EmptyDataProps {
+  style?: React.CSSProperties;
+}
+
+const EmptyData: React.FC<EmptyDataProps> = (props) => {
+  const { style } = props;
   return (
-    <StyledEmptyData>
-      <img src={noDataIcon} alt="no_data"></img>
+    <StyledEmptyData style={style}>
+      <img
+        src={noDataIcon}
+        alt="no_data"
+        style={{ filter: "grayscale(100%)" }}
+      ></img>
       <p>No Data</p>
     </StyledEmptyData>
   );
